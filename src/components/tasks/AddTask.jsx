@@ -5,6 +5,7 @@ import { addTask } from '../../actions/taskActions';
 class AddTask extends Component {
   state = {
     task: "",
+    checked: 'false'
   };
 
   handleChange = (e) => {
@@ -16,6 +17,7 @@ class AddTask extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('Task: ', this.state)
+    document.getElementById('addTaskForm').reset()
     this.props.addTask(this.state)
   };
   render() {
@@ -26,6 +28,7 @@ class AddTask extends Component {
           autoComplete="off"
           style={{ marginTop: "30px" }}
           onSubmit={this.handleSubmit}
+          id='addTaskForm'
         >
           <legend>
           </legend>

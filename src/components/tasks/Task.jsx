@@ -1,18 +1,44 @@
 import React from "react";
+import moment from "moment";
+import { removeTask, toggleChecked } from "../../actions/taskActions";
+import { connect } from "react-redux";
 
-export default function Task() {
+import Check from "./Check";
+
+function Task({ task, removeTask, toggleChecked }) {
+  const handleRemoveTask = (task) => {
+    removeTask(task);
+  };
+  const handleCheck = (task) => {
+    toggleChecked(task);
+  };
   return (
     <>
       <tr>
-        <th scope="row">Learn React</th>
-        <td>1/1/221</td>
+        <th scope="row">{task.task}</th>
+        <td>{moment(task.date.toDate()).calendar()}</td>
         <td>
-        <span className="material-icons text-primary" style={{cursor: 'pointer'}}>done_outline</span>
+          <Check checked={task.checked} onClick={() => handleCheck(task)} />
         </td>
         <td>
-          <span className="material-icons text-danger" style={{cursor: 'pointer'}}>delete</span>
+          <span
+            className="material-icons text-danger"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleRemoveTask(task)}
+          >
+            delete
+          </span>
         </td>
       </tr>
     </>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeTask: (task) => dispatch(removeTask(task)),
+    toggleChecked: (task) => dispatch(toggleChecked(task))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Task);
