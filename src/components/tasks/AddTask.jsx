@@ -5,7 +5,7 @@ import { addTask } from '../../actions/taskActions';
 class AddTask extends Component {
   state = {
     task: "",
-    checked: 'false'
+    checked: 'false',
   };
 
   handleChange = (e) => {
@@ -21,6 +21,7 @@ class AddTask extends Component {
     this.props.addTask(this.state)
   };
   render() {
+      const { uid } = this.props
     return (
       <>
         <form
@@ -50,11 +51,20 @@ class AddTask extends Component {
   }
 }
 
+
+const mapStateToProps = (state) => {
+    const uid = state.firebase.auth.uid
+    return {
+        uid: uid
+    }
+}
+
+
 const mapDispatchToProps = dispatch => {
     return {
         addTask: task => dispatch(addTask(task))
     }
 };
 
-export default connect(null, mapDispatchToProps)(AddTask);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
 
