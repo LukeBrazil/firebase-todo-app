@@ -1,7 +1,5 @@
-import { Toast } from "bootstrap";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/react-toastify.cjs.development';
 
 import SignIn from "./components/auth/SignIn";
@@ -13,7 +11,6 @@ function App() {
   return (
     <>
       <Router>
-        <ToastContainer />
         <Navbar />
         <Switch>
           <Route path="/signin" component={SignIn} />

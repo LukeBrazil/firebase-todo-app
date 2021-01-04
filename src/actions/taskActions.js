@@ -43,18 +43,18 @@ export const removeTask = (task) => {
   };
 };
 
-
 export const toggleChecked = (task) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
     firestore
       .collection("tasks")
       .doc(task.id)
-      .set({
+      .set(
+        {
           ...task,
-          checked: !task.checked
-      },
-      { merge: true }
+          checked: !task.checked,
+        },
+        { merge: true }
       )
       .then(() => {
         dispatch({
@@ -69,5 +69,3 @@ export const toggleChecked = (task) => {
       });
   };
 };
-
-

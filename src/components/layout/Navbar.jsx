@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import NavItems from './NavItems';
 
-export default function Navbar() {
+function Navbar() {
     return (
         <div>
             <nav className="navbar navbar-light bg-light d-flex justify-content-center">
@@ -14,3 +15,9 @@ export default function Navbar() {
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+}
+
+export default connect(mapStateToProps)(Navbar);

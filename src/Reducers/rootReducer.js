@@ -8,7 +8,8 @@ import taskReducer from './taskReducer';
 const rootReducer = combineReducers({
     firebase: firebaseReducer,
     firestore: firestoreReducer,
-    task: taskReducer
+    task: taskReducer,
+    auth: authReducer
 })
 
 export default rootReducer;
