@@ -16,7 +16,6 @@ class AddTask extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Task: ', this.state)
     document.getElementById('addTaskForm').reset()
     this.props.addTask(this.state)
   };
